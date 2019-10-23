@@ -104,7 +104,7 @@ var replaceValuesInObj = (obj, value, newValue) => {
 
     // loop through the object using a for in 
     for (let key in obj){
-        //test if objects value is equal to given value 
+        // test if objects value is equal to given value 
         if (obj[key] === value) {
             //if it is reassign it to newValue
             obj[key] = newValue; 
@@ -120,7 +120,28 @@ var replaceValuesInObj = (obj, value, newValue) => {
 };
 
 var addKeysToExistingObj = (obj, newKey, newValue) => {
-    // your code here
+    // Input: obj, value, replacement value
+    // Output: obj modified 
+    // constraints: must use recursion
+
+    // reassign new value to the value of obj with a key of newKey
+    obj[newKey] = newValue;
+    // loop through the object using a for in 
+    for (let key in obj){
+        // test if objects value is equal to given value 
+        if (obj[key] === newValue) {
+            //if it is reassign it to newValue
+            obj[key] = newValue; 
+        }
+        // Base Case
+        if (_.isObject(obj[key])) {
+            // Recursive Call
+            addKeysToExistingObj(obj[key], newKey, newValue);
+        }
+    }
+
+    // return obj with 
+    return obj
 };
 
 var map = (arr, func) => {
