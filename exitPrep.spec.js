@@ -106,7 +106,7 @@ describe('4) mergeObjects', function() {
 });
 
 
-xdescribe('5) semiMergeObjects', function () {
+describe('5) semiMergeObjects', function () {
     const input = {
         banana: 'yellow',
         apple: 'red',

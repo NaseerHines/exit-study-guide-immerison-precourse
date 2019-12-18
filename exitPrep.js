@@ -42,10 +42,11 @@ var mergeObjects = (...obj) => Object.assign({}, ...obj);
 
 var semiMergeObjects = (obj, ...objs) => {
   for (let i = 0; i < objs.length; i++) {
-    let currentObject = objs[i];
-    _.each(currentObject, (value, key) => {
-      obj[key] = currentObject[key];
-    });
+    for (let key in objs[i]) {
+      if (!obj[key]) {
+        obj[key] = objs[i][key];
+      }
+    }
   }
   return obj;
 };
