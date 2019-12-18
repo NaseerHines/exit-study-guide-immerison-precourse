@@ -37,7 +37,27 @@ describe('1) pureShuffle', () => {
 
 });
 
-describe('2) isPalindrome', () => {
+describe('2) dirtyShuffle', () => {
+    it('should modify the original object', function () {
+        const numbers = [4, 5, 6];
+        const shuffled = dirtyShuffle(numbers).sort();
+        expect(shuffled).to.equal(numbers);
+        expect(numbers).to.eql([4, 5, 6]);
+    });
+    it('should have the same elements as the original object', function () {
+        const numbers = [4, 5, 6];
+        const shuffled = dirtyShuffle(numbers).sort();
+        expect(shuffled).to.eql([4, 5, 6]);
+    });
+    it('should not be in the same order as the original object', function () {
+        const numbers = [4, 5, 6, 7, 8, 9, 10];
+        const shuffled = dirtyShuffle(numbers);
+        // This test will fail 1/9! times
+        expect(shuffled).to.not.eql([4, 5, 6, 7, 8, 9, 10]);
+    });
+});
+
+describe('3) isPalindrome', () => {
 
     it('should return boolean', function () {
         expect(isPalindrome("ted")).to.equal(false);
@@ -57,7 +77,7 @@ describe('2) isPalindrome', () => {
 });
 
 
-describe('3) mergeObjects', function() {
+describe('4) mergeObjects', function() {
     const input = {
         banana: 'yellow',
         apple: 'red',
@@ -85,7 +105,34 @@ describe('3) mergeObjects', function() {
     });
 });
 
-describe('4) replaceValuesInObj', function () {
+
+xdescribe('5) semiMergeObjects', function () {
+    const input = {
+        banana: 'yellow',
+        apple: 'red',
+        carrot: 'purple',
+        spinach: 'green',
+    },
+        input2 = {
+            shoe: 'leather',
+            sweater: 'cashmere blend',
+            pants: 'cotton twill',
+            bag: 'canvas',
+            spinach: 'stain',
+        };
+    const output = semiMergeObjects(input, input2);
+    it('should return an object', function () {
+        expect(typeof (semiMergeObjects(input, input2))).to.equal('object');
+    });
+    it('should return an object with the appropriate key/value pairs', function () {
+        expect(output.hasOwnProperty('pants')).to.equal(true);
+        expect(output.hasOwnProperty('apple')).to.equal(true);
+        expect(output.spinach).to.equal('green');
+    });
+});
+
+
+describe('6) replaceValuesInObj', function () {
 
     var tallyKeys = function (obj) {
         let count = 0;
@@ -174,7 +221,7 @@ describe('4) replaceValuesInObj', function () {
 
 
 
-describe('5) addKeysToExistingObj', function () {
+describe('7) addKeysToExistingObj', function () {
 
     it('should return an object', function () {
         const input = {
@@ -240,7 +287,7 @@ describe('5) addKeysToExistingObj', function () {
 
 });
 
-describe('6) map', () => {
+describe('8) map', () => {
     
 
     it('should use recursion by calling self', function () {
@@ -292,7 +339,7 @@ describe('6) map', () => {
 
 
 
-describe('7) comediansFilteredAndMapped()', () => {
+describe('9) comediansFilteredAndMapped()', () => {
     const tComedians = [
         { number: 1, actor: "Eddie Murphy", begin: 1980, end: 1984 },
         { number: 2, actor: "Michael Che", begin: 1984, end: 1986 },
@@ -359,7 +406,7 @@ describe('7) comediansFilteredAndMapped()', () => {
 
 });
 
-describe('8) comedianNamesFilteredAndMapped()', () => {
+describe('10) comedianNamesFilteredAndMapped()', () => {
     const tComedians = [
         { number: 1, actor: "Eddie Murphy", begin: 1980, end: 1984 },
         { number: 2, actor: "Michael Che", begin: 1984, end: 1986 },
@@ -406,7 +453,7 @@ describe('8) comedianNamesFilteredAndMapped()', () => {
 
 });
 
-describe('9) comediansReduced1()', () => {
+describe('11) comediansReduced1()', () => {
     const tComedians = [
         { number: 1, actor: "Eddie Murphy", begin: 1980, end: 1984 },
         { number: 2, actor: "Michael Che", begin: 1984, end: 1986 },
@@ -464,7 +511,7 @@ describe('9) comediansReduced1()', () => {
 
 });
 
-describe('10) comediansReduced2()', () => {
+describe('12) comediansReduced2()', () => {
     const tComedians = [
         { number: 1, actor: "Eddie Murphy", begin: 1980, end: 1984 },
         { number: 2, actor: "Michael Che", begin: 1984, end: 1986 },
